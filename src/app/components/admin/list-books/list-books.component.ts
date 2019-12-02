@@ -20,7 +20,7 @@ export class ListBooksComponent implements OnInit {
      this.books = books;
     });
   }
-  onDeleteBook(idBook: string) {
+  onDeleteBook(idBook: string): void {
 
     const confirmacion = confirm('estas seguro de querer eliminar este libro?');
     if (confirmacion) {
@@ -28,5 +28,9 @@ export class ListBooksComponent implements OnInit {
       alert('libro eliminado');
     }
 
+  }
+
+  onPreUpdateBook(book: BookIterface) {
+    this.dataApi.selectedBook = Object.assign({}, book);
   }
 }

@@ -18,7 +18,9 @@ export class DataApiService {
   private books: Observable<BookIterface[]>;
   private bookDoc: AngularFirestoreDocument<BookIterface>;
   private book: Observable<BookIterface>;
-  public selectedBook: BookIterface = {};
+  public selectedBook: BookIterface = {
+    id: null
+  };
   getAllBooks() {
     return this.books = this.booksCollection.snapshotChanges().pipe(map(changes => {
       return changes.map(action => {

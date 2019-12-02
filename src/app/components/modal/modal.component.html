@@ -3,14 +3,14 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Ingresa un nuevo libro</h5>
+        <h5 class="modal-title" id="exampleModalLabel">{{!this.dataApi.selectedBook.id ? 'Nuevo libro' : 'Actualizar libro'}}</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
         <form #formBook="ngForm" (ngSubmit)="onSaveBook(formBook)">
-            <input type="text" name="bookId">
+            <input type="hidden" name="id" [(ngModel)]="this.dataApi.selectedBook.id">
           <div class="form-group">
             <label for="titulo" class="col-form-label" >Titulo</label>
             <input type="text" class="form-control" name="titulo" [(ngModel)]="this.dataApi.selectedBook.titulo">
@@ -56,7 +56,8 @@
             <textarea class="form-control" name="descripcion" [(ngModel)]="this.dataApi.selectedBook.descripcion"></textarea>
           </div>
           <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal" #btnClose
+                >Cerrar</button>
                 <button type="submit" class="btn btn-primary" >Guardar libro</button>
         </div>
         </form>
