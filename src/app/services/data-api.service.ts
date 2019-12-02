@@ -41,9 +41,18 @@ export class DataApiService {
     } ));
    }
 
-  addBook() { }
+  addBook(book: BookIterface): void {
+    this.booksCollection.add(book);
+   }
 
-  updateBook() { }
+  updateBook(book: BookIterface): void {
+    let idBook = book.id;
+    this.bookDoc= this.afs.doc<BookIterface>(`books/${idBook}`);
+    this.bookDoc.update(book);
+   }
 
-  deleteBook() { }
+  deleteBook(idBook: string): void {
+    this.bookDoc = this.afs.doc<BookIterface>(`books/${idBook}`);
+    this.bookDoc.delete();
+  }
 }
