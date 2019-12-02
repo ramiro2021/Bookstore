@@ -20,7 +20,13 @@ export class ListBooksComponent implements OnInit {
      this.books = books;
     });
   }
-  onDeleteBook() {
-    console.log('delete book');
+  onDeleteBook(idBook: string) {
+
+    const confirmacion = confirm('estas seguro de querer eliminar este libro?');
+    if (confirmacion) {
+      this.dataApi.deleteBook(idBook);
+      alert('libro eliminado');
+    }
+
   }
 }

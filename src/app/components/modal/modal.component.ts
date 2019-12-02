@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { DataApiService } from '../../services/data-api.service';
+import { BookIterface } from '../../models/book';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-modal',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ModalComponent implements OnInit {
 
-  constructor() { }
+  constructor(public dataApi: DataApiService) { }
 
   ngOnInit() {
   }
-
+  onSaveBook(bookForm: NgForm): void{
+    //new 
+    this.dataApi.addBook(bookForm.value);
+    //update
+  }
 }
