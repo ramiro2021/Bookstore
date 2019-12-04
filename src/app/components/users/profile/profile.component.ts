@@ -10,10 +10,11 @@ import { UserInterface } from '../../../models/user';
 export class ProfileComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
-  user: UserInterface= {
+  user: UserInterface = {
     name: '',
     email: '',
-    photoUrl: ''
+    photoUrl: '',
+    roles: {}
   };
   public providerId: string = 'null';
   ngOnInit() {
@@ -23,7 +24,7 @@ export class ProfileComponent implements OnInit {
         this.user.email = user.email;
         this.user.photoUrl = user.photoURL;
         this.providerId = user.providerData[0].providerId;
-        
+
       }
     });
   }

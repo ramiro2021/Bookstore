@@ -22,6 +22,7 @@ export class DataApiService {
     id: null
   };
   getAllBooks() {
+    this.booksCollection= this.afs.collection<BookIterface>('books');
     return this.books = this.booksCollection.snapshotChanges().pipe(map(changes => {
       return changes.map(action => {
         const data = action.payload.doc.data() as BookIterface;
@@ -57,5 +58,16 @@ export class DataApiService {
   deleteBook(idBook: string): void {
     this.bookDoc = this.afs.doc<BookIterface>(`books/${idBook}`);
     this.bookDoc.delete();
+  }
+  getAllBooksOffers() {
+    this.booksCollection = this.afs.collection('books', ref => ref.where('oferta', '==', '1'));
+    return this.books = this.booksCollection.snapshotChanges()
+      .pipe(map(changes => {
+        return changes.map(action => {
+          const data = action.payload.doc.data() as BookIterface;
+          data.id = action.payload.doc.id;
+          return data;
+        });
+      }));
   }
 }
