@@ -1,16 +1,16 @@
 import { Injectable } from '@angular/core';
-import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore'; 
+import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { BookIterface } from '../models/book';
-import { Observable } from 'rxjs/internal/observable';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataApiService {
 
-  constructor(private afs: AngularFirestore) { 
+  constructor(private afs: AngularFirestore) {
     this.booksCollection= afs.collection<BookIterface>('books');
     this.books = this.booksCollection.valueChanges();
   }

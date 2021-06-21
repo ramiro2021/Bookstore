@@ -3,7 +3,8 @@ import { AuthService } from '../../../services/auth.service';
 import { Router } from '@angular/router';
 import {AngularFireStorage} from '@angular/fire/storage';
 import { finalize } from 'rxjs/operators';
-import { Observable } from 'rxjs/internal/observable';
+import { Observable } from 'rxjs';
+
 
 @Component({
   selector: 'app-register',
@@ -13,7 +14,7 @@ import { Observable } from 'rxjs/internal/observable';
 export class RegisterComponent implements OnInit {
 
   constructor(private router: Router, private authService: AuthService, private storage: AngularFireStorage) { }
-  
+
   @ViewChild('imageUser', {static: true}) inputImageUser: ElementRef;
   public email: string;
   public pass: string;
@@ -73,5 +74,5 @@ export class RegisterComponent implements OnInit {
     this.router.navigate(['admin/list-books']);
   }
 
-  
+
 }
